@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Libraries\WeChatCenterControl;
 
 class WeChatAuthController extends Controller
 {
-    const TOKEN = "wechattokentest";
     /**
      * Display a listing of the resource.
      *
@@ -17,23 +17,25 @@ class WeChatAuthController extends Controller
     public function index(Request $request)
     {
         //
+        // $test = ClassName::is_OK('hahahaha');
+        // echo $test;
         $signature = $request->input('signature');
         $echostr = $request->input('echostr');
         $array = $request->only(['timestamp','nonce']);
-        $array[] = self::TOKEN;
+        $array[] = WeChatCenterControl::TOKEN;
+
+        WeChatCenterControl::request_access_token();
+        
         if ($this->validSignature($signature, array_values($array))) {
           return  $echostr;
         }else {
           return 'invalid';
         }
-
-
     }
-
 
     private function validSignature($signature, $array)
     {
-      if (!self::TOKEN) {
+      if (!WeChatCenterControl::TOKEN) {
         throw new Exception('TOKEN is not defined!');
       }
       sort($array, SORT_STRING);
