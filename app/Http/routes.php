@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return "WeChatAuthController@index";
-});
+Route::get('/', "WeChatAuthController@index");
