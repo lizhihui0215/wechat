@@ -22,7 +22,7 @@ class WeChatAuthController extends Controller
         $array = $request->only(['timestamp','nonce']);
         $array[] = self::TOKEN;
         if ($this->validSignature($signature, array_values($array))) {
-          return response()->json(['echostr' => $echostr]);
+          return  $echostr;
         }else {
           return 'invalid';
         }
