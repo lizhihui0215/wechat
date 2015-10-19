@@ -14,11 +14,32 @@ class WeChatAuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return response()->json(['access_token' => self::TOKEN,
-                                'expires_in' => 7200]);
+        $signature = $request->input('signature');
+        $echostr = $request->input('echostr');
+        $array = $request->only(['timestamp','nonce']);
+        $array[] = self::TOKEN;
+        if ($this->validSignature($signature, array_values($array))) {
+          return response()->json(['echostr' => $echostr]);
+        }else {
+          return 'invalid';
+        }
+
+
+    }
+
+
+    private function validSignature($signature, $array)
+    {
+      if (!self::TOKEN) {
+        throw new Exception('TOKEN is not defined!');
+      }
+      sort($array, SORT_STRING);
+      $tmpStr = implode($array);
+      $tmpStr = sha1($tmpStr);
+      return $signature == $tmpStr;
     }
 
     /**
