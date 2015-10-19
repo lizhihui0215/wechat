@@ -17,7 +17,9 @@ class WeChatAuthController extends Controller
     public function index()
     {
         //
-        return self::TOKEN;
+        // {"access_token":"ACCESS_TOKEN","expires_in":7200}
+        return response()->json('access_token' => self::TOKEN,
+                                'expires_in' => 7200);
     }
 
     /**
