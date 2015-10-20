@@ -28,7 +28,8 @@ class WeChatAuthController extends Controller
             WeChatCenterControl::request_access_token();
         }
         Log::info("request info " ,[$request->fullUrl(),
-                                    $request->all()
+                                    $request->all(),
+                                    $request->getContent()
                                     ]);
         if ($this->validSignature($signature, array_values($array))) {
           return  $echostr;
