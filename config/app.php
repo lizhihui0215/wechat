@@ -146,7 +146,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         // debugger provider
         // https://github.com/barryvdh/laravel-debugbar
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
+
+        //nathanmac/parser
+        // https://github.com/nathanmac/Parser
+        'Nathanmac\Utilities\Parser\ParserServiceProvider'
 
     ],
 
@@ -198,7 +202,11 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
         // debugger povider
         // https://github.com/barryvdh/laravel-debugbar
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        // 'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        //nathanmac/parser
+        // https://github.com/nathanmac/Parser
+        'Parser' => 'Nathanmac\Utilities\Parser\Facades\Parser',
     ],
 
 ];
