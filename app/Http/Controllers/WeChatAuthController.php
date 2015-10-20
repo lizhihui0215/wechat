@@ -24,9 +24,9 @@ class WeChatAuthController extends Controller
         $echostr = $request->input('echostr');
         $array = $request->only(['timestamp','nonce']);
         $array[] = WeChatCenterControl::TOKEN;
-
-
-        WeChatCenterControl::request_access_token();
+        if (WeChatCenterControl::$ACCESS_TOKEN === '') {
+            WeChatCenterControl::request_access_token();
+        }
         Log::info("request info " ,[$request->fullUrl(),
                                     $request->all()
                                     ]);
