@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -24,8 +25,11 @@ class WeChatAuthController extends Controller
         $array = $request->only(['timestamp','nonce']);
         $array[] = WeChatCenterControl::TOKEN;
 
+
         WeChatCenterControl::request_access_token();
-        
+        Log::info("request info " ,[$request->fullUrl(),
+                                    $request->all()
+                                    ]);
         if ($this->validSignature($signature, array_values($array))) {
           return  $echostr;
         }else {
