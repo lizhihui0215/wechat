@@ -12,3 +12,6 @@
 */
 
 Route::get('/', "WeChatAuthController@index");
+Route::get('/index',function(){
+  return view('welcome');
+});
