@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Log;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Libraries\WeChatCenterControl;
+
 
 class WeChatAuthController extends Controller
 {
@@ -19,30 +21,29 @@ class WeChatAuthController extends Controller
         //
         // $test = ClassName::is_OK('hahahaha');
         // echo $test;
-        $signature = $request->input('signature');
         $echostr = $request->input('echostr');
+        $signature = $request->input('signature');
         $array = $request->only(['timestamp','nonce']);
-        $array[] = WeChatCenterControl::TOKEN;
+        $this->debugInfo($request);
 
-        WeChatCenterControl::request_access_token();
-        
-        if ($this->validSignature($signature, array_values($array))) {
-          return  $echostr;
-        }else {
-          return 'invalid';
+        if (isset($echostr)) {
+          if(WeChatCenterControl::validationSignature($signature, array_values($array))){
+            return  $echostr;
+          }else {
+            WeChatCenterControl::dispatchMessage($request->getContent());
+          }
         }
     }
 
-    private function validSignature($signature, $array)
+    public function debugInfo($request)
     {
-      if (!WeChatCenterControl::TOKEN) {
-        throw new Exception('TOKEN is not defined!');
-      }
-      sort($array, SORT_STRING);
-      $tmpStr = implode($array);
-      $tmpStr = sha1($tmpStr);
-      return $signature == $tmpStr;
+      Log::info("request info " ,[$request->fullUrl(),
+                                  $request->all(),
+                                  $request->getContent()
+                                  ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

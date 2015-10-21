@@ -1,6 +1,8 @@
 <?php
   namespace App\Libraries;
+  use Log;
   use GuzzleHttp\Client;
+  use Nathanmac\Utilities\Parser\Parser;
   /**
    *
    */
@@ -26,9 +28,45 @@
                       'secret' => WeChatCenterControl::$APP_SECRET
                     ]
         ]);
-      $json =  json_decode($response->getBody());
-      WeChatCenterControl::$ACCESS_TOKEN = $json->{'access_token'};
-      return WeChatCenterControl::$ACCESS_TOKEN;
+      $access_token =  json_decode($response->getBody())->{'access_token'};
+      return $access_token;
+    }
+
+    public function getAccessToken($isReload=false){
+      if (!$isReload) return self::$ACCESS_TOKEN;
+
+    }
+
+    public static function validationSignature($signature, $array)
+    {
+      if (!WeChatCenterControl::TOKEN) {
+        throw new Exception('TOKEN is not defined!');
+      }
+      $array[] = WeChatCenterControl::TOKEN;
+      sort($array, SORT_STRING);
+      $tmpStr = implode($array);
+      $tmpStr = sha1($tmpStr);
+      return $signature == $tmpStr;
+    }
+
+    public static function dispatchMessage($content)
+    {
+
+      $parser = new Parser();
+      $contentArray = $parser->xml($content);
+      switch ($contentArray['MsgType']) {
+        case 'text':
+          $message = new WeChatMessage();
+          break;
+
+        default:
+          # code...
+          break;
+      }
+      Log::info("dispatchMessage " ,[
+                                  $content,
+                                  $contentArray['ToUserName']
+                                  ]);
     }
 
   }
