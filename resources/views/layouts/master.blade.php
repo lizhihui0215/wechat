@@ -11,6 +11,18 @@
   </script>
 </head>
 <body>
+  @if(session()->has('ok'))
+			@include('partials.error', ['type' => 'success', 'message' => session('ok')])
+  @endif
+
+  @if (count($errors) > 0)
+    @include('partials.error', ['type' => 'danger','message' => $errors->all()])
+  @endif
+
+  @if(isset($info))
+		@include('partials.error', ['type' => 'info', 'message' => $info])
+	@endif
+
   @yield('content')
   <script type="text/javascript" src="{{ url( elixir('js/site.js') ) }}"></script>
   @yield('javascript')

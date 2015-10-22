@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -61,5 +63,31 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function postRegister(RegisterRequest $request, UserRepository $user_gestion)
+    {
+      $user = $user_gestion->store($request->all(),$confirmation_code = str_random(30));
+
+      // TODO: send mail
+
+      return redirect('/auth/login')->with('ok',trans('front/verify.message'));
+    }
+
+    public function getRegister()
+    {
+      return view('users.register');
+    }
+
+    /*
+    */
+    public function getLogin()
+    {
+      return view('users.login');
+    }
+
+    public function postLogin()
+    {
+      return view('dashboards.dashboard');
     }
 }

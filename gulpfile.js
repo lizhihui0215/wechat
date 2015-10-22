@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower');
 var elixir = require('laravel-elixir');
-
+var del = require('del');
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -34,7 +34,6 @@ var paths = {
   'peity' : 'vendor/peity',
   'slimScroll' : 'vendor/slimScroll',
   'toastr' : "vendor/toastr",
-  'iCheck' : 'vendor/iCheck',
   'site' : ''
 };
 
@@ -42,6 +41,8 @@ var paths = {
 elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
+  // Run clean
+  mix.task('clean');
   // Run bower install
   mix.task('bower');
   // Copy fonts straight to public
@@ -55,7 +56,7 @@ elixir(function(mix) {
   mix.copy('resources/' + paths.site + 'assets/images/**','public/build/images');
 
   // Copy iCheck skins
-  mix.copy('resources/' + paths.iCheck + '/skins/**','public/build/skins');
+  // mix.copy('resources/' + paths.iCheck + '/skins/*', 'public/build/css/');
 
 
   // Merge Site scripts
@@ -69,7 +70,7 @@ elixir(function(mix) {
     '../../' + paths.peity + '/jquery.peity.js',
     '../../' + paths.slimScroll + '/jquery.slimscroll.js',
     '../../' + paths.toastr + '/toastr.js',
-    '../../' + paths.iCheck + '/icheck.js',
+    paths.site + '/icheck.min.js',
     paths.site + '/inspinia.js',
   ], 'public/js/site.js');
   // Merge Site css
@@ -80,6 +81,7 @@ elixir(function(mix) {
     '../../' + paths.metisMenu + '/metisMenu.css',
     paths.site + '/style.css',
     paths.site + '/animate.css',
+    paths.site + '/icheck-custom.css',
   ], 'public/css/site.css');
 
   // version

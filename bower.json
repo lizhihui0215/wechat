@@ -28,7 +28,6 @@
     "PACE": "pace#~1.0.2",
     "peity": "~3.2.0",
     "font-awesome": "fontawesome#~4.4.0",
-    "jquery-ui": "~1.11.4",
-    "iCheck": "~1.0.2"
+    "jquery-ui": "~1.11.4"
   }
 }
