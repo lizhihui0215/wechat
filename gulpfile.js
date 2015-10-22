@@ -44,12 +44,14 @@ elixir(function(mix) {
   // Run bower install
   mix.task('bower');
   // Copy fonts straight to public
-  mix.copy('resources/' + paths.site + '/fonts/**','public/fonts');
+  mix.copy('resources/' + paths.site + '/fonts/**','public/build/fonts');
 
-  mix.copy('resources/' + paths.font_awesome + '/fonts/**','public/fonts');
+  mix.copy('resources/' + paths.font_awesome + '/fonts/**','public/build/fonts');
 
   // Copy images straight to public
   mix.copy('resources/' + paths.gritter + '/images/**', 'public/build/images');
+
+  mix.copy('resources/' + paths.site + 'assets/images/**','public/build/images');
 
   // Merge Site scripts
   mix.scripts([

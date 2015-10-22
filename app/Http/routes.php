@@ -12,6 +12,15 @@
 */
 
 Route::match(['get','post'],'/', "WeChatAuthController@index");
+
+Route::get('/register',function(){
+  return view('users.register');
+});
+
+Route::get('/profile',function (){
+  return view('users.profile');
+});
+
 Route::get('/index',function(){
   return view('welcome');
 });
