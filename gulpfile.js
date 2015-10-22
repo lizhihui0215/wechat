@@ -34,6 +34,7 @@ var paths = {
   'peity' : 'vendor/peity',
   'slimScroll' : 'vendor/slimScroll',
   'toastr' : "vendor/toastr",
+  'iCheck' : 'vendor/iCheck',
   'site' : ''
 };
 
@@ -53,6 +54,10 @@ elixir(function(mix) {
 
   mix.copy('resources/' + paths.site + 'assets/images/**','public/build/images');
 
+  // Copy iCheck skins
+  mix.copy('resources/' + paths.iCheck + '/skins/**','public/build/skins');
+
+
   // Merge Site scripts
   mix.scripts([
     '../../' + paths.jquery + '/jquery.js',
@@ -64,6 +69,7 @@ elixir(function(mix) {
     '../../' + paths.peity + '/jquery.peity.js',
     '../../' + paths.slimScroll + '/jquery.slimscroll.js',
     '../../' + paths.toastr + '/toastr.js',
+    '../../' + paths.iCheck + '/icheck.js',
     paths.site + '/inspinia.js',
   ], 'public/js/site.js');
   // Merge Site css
