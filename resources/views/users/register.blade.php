@@ -18,7 +18,7 @@
                 <input type="password" class="form-control" name="password" placeholder="密码" required />
             </div>
             <div class="form-group">
-                <div class="checkbox i-checks"><label> <input type="checkbox"><span> 同意我们的条款。</span></label></div>
+                <div class="checkbox i-checks"><label> <input name="isAgree" type="checkbox" ><span> 同意我们的条款。</span></label></div>
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">注册</button>
 
@@ -31,38 +31,21 @@
 </div>
 @endsection
 @section('javascript')
-
-<script>
-        $(document).ready(function(){
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-
-            $("#form").validate({
-                rules: {
-                    password: {
-                        required: true,
-                        minlength: 3
-                    },
-                    url: {
-                        required: true,
-                        url: true
-                    },
-                    number: {
-                        required: true,
-                        number: true
-                    },
-                    min: {
-                        required: true,
-                        minlength: 6
-                    },
-                    max: {
-                        required: true,
-                        maxlength: 4
-                    }
-                }
-            });
+  <script  type="text/javascript">
+    $(document).ready(function(){
+        $('.i-checks').iCheck('check');
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
         });
-    </script>
+
+        $('.i-checks').on('ifChecked', function(event){
+          $("button[type=submit]").removeAttr('disabled');
+        });
+
+        $('.i-checks').on('ifUnchecked', function(event){
+          $("button[type=submit]").attr('disabled','disabled');
+        });
+    });
+  </script>
 @endsection

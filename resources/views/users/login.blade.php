@@ -14,10 +14,13 @@
             <p>登录开始WeChat之旅你的.</p>
             <form class="m-t" role="form" action="{{ url('auth/login') }}" method="post">
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="用户名/邮箱" required="">
+                    <input type="text" name="identifier" class="form-control" placeholder="用户名/邮箱" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="">
+                    <input type="password" name="password" class="form-control" placeholder="密码" required>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox i-checks"><label> <input name="memory" type="checkbox" ><span> 记住密码。</span></label></div>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 
@@ -29,4 +32,16 @@
             <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
         </div>
     </div>
+@endsection
+
+@section('javascript')
+  <script  type="text/javascript">
+    $(document).ready(function(){
+        $('.i-checks').iCheck('check');
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+  </script>
 @endsection

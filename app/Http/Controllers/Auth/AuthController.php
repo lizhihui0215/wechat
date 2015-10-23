@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use App\Jobs\SendMail;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -25,6 +27,14 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    // success redirectPath
+    protected $redirectPath = '/profile';
+
+    // failed redirectPath
+    protected $loginPath = '/auth/login';
+
+    // max login attempts
+    protected $maxLoginAttempts = 10;
     /**
      * Create a new authentication controller instance.
      *
@@ -70,6 +80,7 @@ class AuthController extends Controller
       $user = $user_gestion->store($request->all(),$confirmation_code = str_random(30));
 
       // TODO: send mail
+      $this->dispatch(new SendMail($user));
 
       return redirect('/auth/login')->with('ok',trans('front/verify.message'));
     }
@@ -86,8 +97,31 @@ class AuthController extends Controller
       return view('users.login');
     }
 
-    public function postLogin()
+    public function postLogin(LoginRequest $request)
     {
+      $identifier = $request->input['identifier'];
+      $password = $request->input['password'];
+      $memory = $request->input['memory'];
+
+      $identifier = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+
+
+
       return view('dashboards.dashboard');
+    }
+
+    public function getConfirm(UserRepository $user_gestion, $confirmation_code)
+    {
+      $user = $user_gestion->confirm($confirmation_code);
+      return redirect('/auth/login')->with('ok', trans('front/verify.success'));
+    }
+
+    public function confirm($confirmation_code)
+    {
+      $user = $this->model->where('confirmation_code',$confirmation_code)->firstOrFail();
+      $user->confirmed = true;
+      $user->confirmation_code = null;
+      $user->save();
     }
 }

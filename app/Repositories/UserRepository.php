@@ -2,28 +2,57 @@
 namespace App\Repositories;
 
 use App\Models\User;
+use App\Models\Role;
 
 /**
- *
- */
+*
+*/
 class UserRepository extends BaseRepository
 {
+  /**
+  * The Role instance.
+  *
+  * @var App\Models\Role
+  */
+  protected $role;
 
-  function __construct(User $user)
+
+  /**
+  * Create a new UserRepository instance.
+  *
+  * @param  App\Models\User $user
+  * @param  App\Models\Role $role
+  * @return void
+  */
+  public function __construct(
+  User $user,
+  Role $role)
   {
     $this->model = $user;
+    $this->role = $role;
   }
 
   private function save($user, $inputs)
   {
-    if (isset($inputs['seen'])) {
-      $user->seen = $['seen'] == 'true';
-    }else {
+    if(isset($inputs['seen']))
+    {
+      $user->seen = $inputs['seen'] == 'true';
+    } else {
+
       $user->username = $inputs['username'];
       $user->email = $inputs['email'];
 
-      $user->save();
+      if(isset($inputs['role'])) {
+        $user->role_id = $inputs['role'];
+      } else {
+        $role_user = $this->role->where('slug', 'user')->first();
+          print_r($role_user);
+        $user->role_id = $role_user->id;
+
+      }
     }
+
+    $user->save();
   }
 
   public function store($inputs, $confirmation_code = null)
@@ -31,18 +60,33 @@ class UserRepository extends BaseRepository
     $user = new $this->model;
     $user->password = bcrypt($inputs['password']);
     if($confirmation_code) {
-			$user->confirmation_code = $confirmation_code;
-		} else {
-			$user->confirmed = true;
-		}
+      $user->confirmation_code = $confirmation_code;
+    } else {
+      $user->confirmed = true;
+    }
 
-		$this->save($user, $inputs);
+    $this->save($user, $inputs);
 
-		return $user;
+    return $user;
   }
+
+  /**
+	 * Confirm a user.
+	 *
+	 * @param  string  $confirmation_code
+	 * @return App\Models\User
+	 */
+	public function confirm($confirmation_code)
+	{
+		$user = $this->model->whereConfirmationCode($confirmation_code)->firstOrFail();
+
+		$user->confirmed = true;
+		$user->confirmation_code = null;
+		$user->save();
+	}
 
 
 }
 
 
- ?>
+?>
