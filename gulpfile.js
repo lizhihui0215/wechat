@@ -34,6 +34,10 @@ var paths = {
   'peity' : 'vendor/peity',
   'slimScroll' : 'vendor/slimScroll',
   'toastr' : "vendor/toastr",
+  'flot' : 'vendor/Flot',
+  'flot_spline' : 'vendor/flot-spline',
+  'flot_tooltip' : 'vendor/flot.tooltip',
+  'sparkline' : 'vendor/jquery.sparkline.dist',
   'site' : ''
 };
 
@@ -70,8 +74,17 @@ elixir(function(mix) {
     '../../' + paths.peity + '/jquery.peity.js',
     '../../' + paths.slimScroll + '/jquery.slimscroll.js',
     '../../' + paths.toastr + '/toastr.js',
+    '../../' + paths.flot + '/jquery.flot.js',
+    '../../' + paths.flot_tooltip + '/js/jquery.flot.tooltip.js',
+    '../../' + paths.flot + '/jquery.flot.resize.js',
+    '../../' + paths.flot + '/jquery.flot.pie.js',
+    '../../' + paths.flot + '/jquery.flot.symbol.js',
+    '../../' + paths.flot + '/jquery.flot.time.js',
+    '../../' + paths.flot_spline + '/js/jquery.flot.spline.js',
+    '../../' + paths.sparkline + '/dist/jquery.sparkline.js',
     paths.site + '/icheck.min.js',
     paths.site + '/inspinia.js',
+    // paths.site + '/pace.min.js',
   ], 'public/js/site.js');
   // Merge Site css
   mix.styles([
