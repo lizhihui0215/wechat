@@ -20,7 +20,7 @@
                     <input type="password" name="password" class="form-control" placeholder="密码" required>
                 </div>
                 <div class="form-group">
-                    <div class="checkbox i-checks"><label> <input name="memory" type="checkbox" ><span> 记住密码。</span></label></div>
+                    <div class="checkbox i-checks"><label> <input name="remember" type="checkbox" ><span> 记住密码。</span></label></div>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">登录</button>
 

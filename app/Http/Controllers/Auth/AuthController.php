@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use Auth;
+use Log;
+use Debugbar;
 use Validator;
+use App\Models\User;
 use App\Jobs\SendMail;
+use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -28,13 +32,17 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     // success redirectPath
-    protected $redirectPath = '/profile';
+    protected $redirectPath = '/dashboard';
 
     // failed redirectPath
     protected $loginPath = '/auth/login';
 
     // max login attempts
     protected $maxLoginAttempts = 10;
+
+    // logout redirectPath
+    protected $redirectAfterLogout = '/auth/login';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -54,27 +62,12 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
+            'username' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|min:6',
         ]);
     }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }
-
+    
     public function postRegister(RegisterRequest $request, UserRepository $user_gestion)
     {
       $user = $user_gestion->store($request->all(),$confirmation_code = str_random(30));
@@ -99,16 +92,40 @@ class AuthController extends Controller
 
     public function postLogin(LoginRequest $request)
     {
-      $identifier = $request->input['identifier'];
-      $password = $request->input['password'];
-      $memory = $request->input['memory'];
+      $identifier = $request->input('identifier');
+      $password = $request->input('password');
+      $remember = $request->input('remember');
+      $loginMethod = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-      $identifier = filter_var($identifier, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+      if ($this->hasTooManyLoginAttempts($request)) {
+        $this->sendLockoutResponse($request);
+        return redirect('/auth/login')->withErrors([trans('front/login.maxattempt')])
+                                     ->withInput($request->only('identifier'));
+      }
+      $credentials = [
+        $loginMethod => $identifier,
+        'password' => $password
+      ];
 
+      if (!Auth::attempt($credentials,$remember)) {
+        $this->incrementLoginAttempts($request);
+        return redirect('/auth/login')->withErrors([trans('front/login.credentials')])
+                                      ->withInput($request->only('identifier','remember'));
+      }
 
+      $user = Auth::user();
+      Debugbar::info($user);
+      if(!$user->confirmed){
+        Auth::logout();
+        $request->session()->put('user_id', $user->id);
+        return redirect('/auth/login')->withErrors([trans('front/verify.again')]);
+      }
 
-
-      return view('dashboards.dashboard');
+      $this->clearLoginAttempts($request);
+      if($request->session()->has('user_id'))	{
+				$request->session()->forget('user_id');
+			}
+      return redirect('/dashboard');
     }
 
     public function getConfirm(UserRepository $user_gestion, $confirmation_code)
@@ -123,5 +140,17 @@ class AuthController extends Controller
       $user->confirmed = true;
       $user->confirmation_code = null;
       $user->save();
+    }
+
+    public function getResend(UserRepository $user_gestion,Request $request)
+    {
+      if ($request->session()->has('user_id')) {
+        $user = $user_gestion->getById($request->session()->get('user_id'));
+
+        $this->dispatch(new SendMail($user));
+
+        return redirect('/auth/login')->with('ok', trans('front/verify.resend'));
+      }
+      return redirect('/auth/login');
     }
 }

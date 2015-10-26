@@ -16,12 +16,12 @@ class DatabaseSeeder extends Seeder
 
     // $this->call(UserTableSeeder::class);
     Role::create([
-      'title' => 'Administrator',
+      'title' => '管理员',
       'slug' => 'admin'
     ]);
 
     Role::create([
-      'title' => 'User',
+      'title' => '用户',
       'slug' => 'user'
     ]);
 

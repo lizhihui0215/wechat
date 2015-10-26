@@ -1,3 +1,4 @@
+<?php $user = Auth::user() ?>
 <nav class="navbar-default navbar-static-side" role="navigation">
   <div class="sidebar-collapse">
     <ul class="nav" id="side-menu">
@@ -6,14 +7,14 @@
           <img alt="image" class="img-circle" src="{{ url('build/images/user/profile_small.jpg')}}" />
         </span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-          <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">李智慧</strong>
-          </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+          <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{$user['username']}}</strong>
+          </span> <span class="text-muted text-xs block">{{$user->role->title}} <b class="caret"></b></span> </span> </a>
           <ul class="dropdown-menu animated fadeInRight m-t-xs">
-            <li><a href="{{ url('/profile') }}">Profile</a></li>
-            <li><a href="contacts.html">Contacts</a></li>
-            <li><a href="mailbox.html">Mailbox</a></li>
+            <li><a href="{{ url('/profile') }}">用户资料</a></li>
+            <li><a href="contacts.html">联系人</a></li>
+            <li><a href="mailbox.html">邮件箱</a></li>
             <li class="divider"></li>
-            <li><a href="login.html">Logout</a></li>
+            <li><a href="{{ url('/auth/logout') }}">退出</a></li>
           </ul>
         </div>
         <div class="logo-element">
@@ -23,10 +24,8 @@
       <li class="active">
         <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
-          <li class="active"><a href="index.html">Dashboard v.1</a></li>
-          <li ><a href="dashboard_2.html">Dashboard v.2</a></li>
-          <li ><a href="dashboard_3.html">Dashboard v.3</a></li>
-          <li ><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+          <li class="active"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+          <li ><a href="{{ url('/dashboard') }}">Dashboard v.2</a></li>
         </ul>
       </li>
       <li>

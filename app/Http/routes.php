@@ -13,6 +13,7 @@
 
 Route::match(['get','post'],'/', "WeChatAuthController@index");
 
+Route::get('/dashboard','Dashboard\DashboardController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

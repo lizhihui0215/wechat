@@ -147,10 +147,11 @@ return [
         // debugger provider
         // https://github.com/barryvdh/laravel-debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
-
         //nathanmac/parser
         // https://github.com/nathanmac/Parser
-        'Nathanmac\Utilities\Parser\ParserServiceProvider'
+        'Nathanmac\Utilities\Parser\ParserServiceProvider',
+        // http://laravelcollective.com/docs/5.1/html
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -200,13 +201,15 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        // debugger povider
+        // debugger provider
         // https://github.com/barryvdh/laravel-debugbar
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
-
         //nathanmac/parser
         // https://github.com/nathanmac/Parser
         'Parser' => 'Nathanmac\Utilities\Parser\Facades\Parser',
+        // http://laravelcollective.com/docs/5.1/html
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -6,7 +6,7 @@
     </button>
     @if(is_array($message))
       @foreach ($message as $error)
-          <li>{{ $error }}</li>
+          <li>{!! $error !!}</li>
       @endforeach
     @else
       {{$message}}
