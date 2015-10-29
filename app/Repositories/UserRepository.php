@@ -3,7 +3,7 @@ namespace App\Repositories;
 
 use App\Models\User;
 use App\Models\Role;
-
+use App\Models\UserProfile;
 /**
 *
 */
@@ -46,13 +46,14 @@ class UserRepository extends BaseRepository
         $user->role_id = $inputs['role'];
       } else {
         $role_user = $this->role->where('slug', 'user')->first();
-          print_r($role_user);
         $user->role_id = $role_user->id;
-
       }
     }
-
+    
     $user->save();
+    $user_profile = new UserProfile;
+    $user_profile->user()->associate($user);
+    $user_profile->save();
   }
 
   public function store($inputs, $confirmation_code = null)

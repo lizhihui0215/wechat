@@ -5,6 +5,8 @@
       <li class="nav-header">
         <div class="dropdown profile-element"> <span>
           <img alt="image" class="img-circle" src="{{ url('build/images/user/profile_small.jpg')}}" />
+          <img alt="image" class="img-circle" src="{{ $profile->small_profile_image}}" />
+
         </span>
         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
           <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{$user['username']}}</strong>

@@ -18,8 +18,10 @@ class DashboardController extends Controller
     {
         //
         $user =  $request->user();
+        $profile = $user->profile;
         Debugbar::info($user);
-        return view('dashboards.dashboard');
+        Debugbar::info($profile->small_profile_image);
+        return view('dashboards.dashboard')->with('profile', $profile);;
     }
 
     /**
