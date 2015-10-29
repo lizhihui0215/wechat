@@ -15,9 +15,11 @@ class CreateUserProfileTable extends Migration
         Schema::create('user_profile', function (Blueprint $table) {
             $small_profile_image = url('images/user/profile_small.jpg');
             $profile_image = url('images/user/profile.jpg');
+            $big_profile_image = url('images/user/profile_big.jpg');
             $table->increments('id');
             $table->string('small_profile_image')->default($small_profile_image);
             $table->string('profile_image')->default($profile_image);
+            $table->string('big_profile_image')->default($big_profile_image);
             $table->integer('user_id')->unsigned();
             $table->string('test');
             $table->timestamps();

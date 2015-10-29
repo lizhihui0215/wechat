@@ -49,7 +49,7 @@ class UserRepository extends BaseRepository
         $user->role_id = $role_user->id;
       }
     }
-    
+
     $user->save();
     $user_profile = new UserProfile;
     $user_profile->user()->associate($user);
@@ -85,8 +85,7 @@ class UserRepository extends BaseRepository
 		$user->confirmation_code = null;
 		$user->save();
 	}
-
-
+  
 }
 
 

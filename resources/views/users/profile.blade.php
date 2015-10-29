@@ -1,6 +1,9 @@
+<?php
+    $user = Auth::user();
+    $profile = $user->profile;
+?>
 @extends('layouts.admin')
 @section('admin-content')
-
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
     <h2>Profile</h2>
@@ -30,7 +33,7 @@
         </div>
         <div>
           <div class="ibox-content no-padding border-left-right">
-            <img alt="image" class="img-responsive" src="img/profile_big.jpg">
+            <img alt="image" class="img-responsive" src="{{ $profile->big_profile_image}}">
           </div>
           <div class="ibox-content profile-content">
             <h4><strong>Monica Smith</strong></h4>

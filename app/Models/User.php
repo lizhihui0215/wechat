@@ -51,4 +51,16 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('App\Models\UserProfile');
     }
+
+    public function followersRelationships()
+    {
+        return $this->hasMany('App\Models\FollowerRelationship');
+    }
+
+    public function followedRelationships()
+    {
+        return $this->hasMany('App\Models\FollowedRelationship');
+    }
+
+
 }
