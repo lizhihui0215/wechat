@@ -4,224 +4,415 @@
 ?>
 @extends('layouts.admin')
 @section('admin-content')
-<div class="row wrapper border-bottom white-bg page-heading">
-  <div class="col-lg-10">
-    <h2>Profile</h2>
-    <ol class="breadcrumb">
-      <li>
-        <a href="index.html">Home</a>
-      </li>
-      <li>
-        <a>Extra Pages</a>
-      </li>
-      <li class="active">
-        <strong>Profile</strong>
-      </li>
-    </ol>
-  </div>
-  <div class="col-lg-2">
+<div class="wrapper wrapper-content animated fadeInRight">
 
-  </div>
-</div>
 
-<div class="wrapper wrapper-content">
-  <div class="row animated fadeInRight">
-    <div class="col-md-4">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Profile Detail</h5>
-        </div>
-        <div>
-          <div class="ibox-content no-padding border-left-right">
-            <img alt="image" class="img-responsive" src="{{ $profile->big_profile_image}}">
-          </div>
-          <div class="ibox-content profile-content">
-            <h4><strong>Monica Smith</strong></h4>
-            <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
-            <h5>
-              About me
-            </h5>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.
-            </p>
-            <div class="row m-t-lg">
-              <div class="col-md-4">
-                <span class="bar">5,3,9,6,5,9,7,3,5,2</span>
-                <h5><strong>169</strong> Posts</h5>
-              </div>
-              <div class="col-md-4">
-                <span class="line">5,3,9,6,5,9,7,3,5,2</span>
-                <h5><strong>28</strong> Following</h5>
-              </div>
-              <div class="col-md-4">
-                <span class="bar">5,3,2,-1,-3,-2,2,3,5,2</span>
-                <h5><strong>240</strong> Followers</h5>
-              </div>
-            </div>
-            <div class="user-button">
-              <div class="row">
+            <div class="row m-b-lg m-t-lg">
                 <div class="col-md-6">
-                  <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</button>
+
+                    <div class="profile-image">
+                        <img src="{{$profile->small_profile_image}}" class="img-circle circle-border m-b-md" alt="profile">
+                    </div>
+                    <div class="profile-info">
+                        <div class="">
+                            <div>
+                                <h2 class="no-margins">
+                                    Alex Smith
+                                </h2>
+                                <h4>Founder of Groupeq</h4>
+                                <small>
+                                    There are many variations of passages of Lorem Ipsum available, but the majority
+                                    have suffered alteration in some form Ipsum available.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                  <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Buy a coffee</button>
+                <div class="col-md-3">
+                    <table class="table small m-b-xs">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <strong>142</strong> Projects
+                            </td>
+                            <td>
+                                <strong>22</strong> Followers
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>61</strong> Comments
+                            </td>
+                            <td>
+                                <strong>54</strong> Articles
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>154</strong> Tags
+                            </td>
+                            <td>
+                                <strong>32</strong> Friends
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-              </div>
+                <div class="col-md-3">
+                    <small>Sales in last 24h</small>
+                    <h2 class="no-margins">206 480</h2>
+                    <div id="sparkline1"><canvas width="215" height="50" style="display: inline-block; width: 215px; height: 50px; vertical-align: top;"></canvas></div>
+                </div>
+
+
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <div class="ibox float-e-margins">
-        <div class="ibox-title">
-          <h5>Activites</h5>
-          <div class="ibox-tools">
-            <a class="collapse-link">
-              <i class="fa fa-chevron-up"></i>
-            </a>
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="fa fa-wrench"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-user">
-              <li><a href="#">Config option 1</a>
-              </li>
-              <li><a href="#">Config option 2</a>
-              </li>
-            </ul>
-            <a class="close-link">
-              <i class="fa fa-times"></i>
-            </a>
-          </div>
-        </div>
-        <div class="ibox-content">
+            <div class="row">
 
-          <div>
-            <div class="feed-activity-list">
+                <div class="col-lg-3">
 
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a1.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right text-navy">1m ago</small>
-                  <strong>Sandra Momot</strong> started following <strong>Monica Smith</strong>. <br>
-                  <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                  <div class="actions">
-                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                    <a class="btn btn-xs btn-danger"><i class="fa fa-heart"></i> Love</a>
-                  </div>
-                </div>
-              </div>
+                    <div class="ibox">
+                        <div class="ibox-content">
+                                <h3>About Alex Smith</h3>
 
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/profile.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right">5m ago</small>
-                  <strong>Monica Smith</strong> posted a new blog. <br>
-                  <small class="text-muted">Today 5:60 pm - 12.06.2014</small>
+                            <p class="small">
+                                There are many variations of passages of Lorem Ipsum available, but the majority have
+                                suffered alteration in some form, by injected humour, or randomised words which don't.
+                                <br>
+                                <br>
+                                If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                                anything embarrassing
+                            </p>
+
+                            <p class="small font-bold">
+                                <span><i class="fa fa-circle text-navy"></i> Online status</span>
+                                </p>
+
+                        </div>
+                    </div>
+
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3>Followers and friends</h3>
+                            <p class="small">
+                                If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                                anything embarrassing
+                            </p>
+                            <div class="user-friends">
+                                <a href=""><img alt="image" class="img-circle" src="img/a3.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a4.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a5.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a6.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a7.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a8.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a2.jpg"></a>
+                                <a href=""><img alt="image" class="img-circle" src="img/a1.jpg"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3>Personal friends</h3>
+                            <ul class="list-unstyled file-list">
+                                <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
+                                <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
+                                <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
+                                <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
+                                <li><a href=""><i class="fa fa-file-powerpoint-o"></i> Presentation.pptx</a></li>
+                                <li><a href=""><i class="fa fa-file"></i> 10_08_2015.docx</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <h3>Private message</h3>
+
+                            <p class="small">
+                                Send private message to Alex Smith
+                            </p>
+
+                            <div class="form-group">
+                                <label>Subject</label>
+                                <input type="email" class="form-control" placeholder="Message subject">
+                            </div>
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
+                            </div>
+                            <button class="btn btn-primary btn-block">Send</button>
+
+                        </div>
+                    </div>
 
                 </div>
-              </div>
 
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a2.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right">2h ago</small>
-                  <strong>Mark Johnson</strong> posted message on <strong>Monica Smith</strong> site. <br>
-                  <small class="text-muted">Today 2:10 pm - 12.06.2014</small>
-                  <div class="well">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                    Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </div>
-                  <div class="pull-right">
-                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                    <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Love</a>
-                    <a class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Message</a>
-                  </div>
+                <div class="col-lg-5">
+
+                    <div class="social-feed-box">
+
+                        <div class="pull-right social-action dropdown">
+                            <button data-toggle="dropdown" class="dropdown-toggle btn-white" aria-expanded="false">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu m-t-xs">
+                                <li><a href="#">Config</a></li>
+                            </ul>
+                        </div>
+                        <div class="social-avatar">
+                            <a href="" class="pull-left">
+                                <img alt="image" src="img/a1.jpg">
+                            </a>
+                            <div class="media-body">
+                                <a href="#">
+                                    Andrew Williams
+                                </a>
+                                <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                            </div>
+                        </div>
+                        <div class="social-body">
+                            <p>
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                                default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                                in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                                default model text.
+                            </p>
+
+                            <div class="btn-group">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="social-footer">
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a1.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#">
+                                        Andrew Williams
+                                    </a>
+                                    Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                                    <br>
+                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                                    <small class="text-muted">12.06.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a2.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#">
+                                        Andrew Williams
+                                    </a>
+                                    Making this the first true generator on the Internet. It uses a dictionary of.
+                                    <br>
+                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                                    <small class="text-muted">10.07.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a3.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <textarea class="form-control" placeholder="Write comment..."></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="social-feed-box">
+
+                        <div class="pull-right social-action dropdown">
+                            <button data-toggle="dropdown" class="dropdown-toggle btn-white">
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu m-t-xs">
+                                <li><a href="#">Config</a></li>
+                            </ul>
+                        </div>
+                        <div class="social-avatar">
+                            <a href="" class="pull-left">
+                                <img alt="image" src="img/a6.jpg">
+                            </a>
+                            <div class="media-body">
+                                <a href="#">
+                                    Andrew Williams
+                                </a>
+                                <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
+                            </div>
+                        </div>
+                        <div class="social-body">
+                            <p>
+                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their
+                                default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                                in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                                default model text.
+                            </p>
+                            <p>
+                                Lorem Ipsum as their
+                                default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                                in their infancy. Packages and web page editors now use Lorem Ipsum as their
+                                default model text.
+                            </p>
+                            <img src="img/gallery/3.jpg" class="img-responsive">
+                            <div class="btn-group">
+                                <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
+                                <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
+                            </div>
+                        </div>
+                        <div class="social-footer">
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a1.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#">
+                                        Andrew Williams
+                                    </a>
+                                    Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
+                                    <br>
+                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
+                                    <small class="text-muted">12.06.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a2.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#">
+                                        Andrew Williams
+                                    </a>
+                                    Making this the first true generator on the Internet. It uses a dictionary of.
+                                    <br>
+                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                                    <small class="text-muted">10.07.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a8.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <a href="#">
+                                        Andrew Williams
+                                    </a>
+                                    Making this the first true generator on the Internet. It uses a dictionary of.
+                                    <br>
+                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
+                                    <small class="text-muted">10.07.2014</small>
+                                </div>
+                            </div>
+
+                            <div class="social-comment">
+                                <a href="" class="pull-left">
+                                    <img alt="image" src="img/a3.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <textarea class="form-control" placeholder="Write comment..."></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
                 </div>
-              </div>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a3.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right">2h ago</small>
-                  <strong>Janet Rosowski</strong> add 1 photo on <strong>Monica Smith</strong>. <br>
-                  <small class="text-muted">2 days ago at 8:30am</small>
-                  <div class="photos">
-                    <a target="_blank" href="http://24.media.tumblr.com/20a9c501846f50c1271210639987000f/tumblr_n4vje69pJm1st5lhmo1_1280.jpg"> <img alt="image" class="feed-photo" src="img/p1.jpg"></a>
-                    <a target="_blank" href="http://37.media.tumblr.com/9afe602b3e624aff6681b0b51f5a062b/tumblr_n4ef69szs71st5lhmo1_1280.jpg"> <img alt="image" class="feed-photo" src="img/p3.jpg"></a>
-                  </div>
+                <div class="col-lg-4 m-b-lg">
+                    <div id="vertical-timeline" class="vertical-container light-timeline no-margins">
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon navy-bg">
+                                <i class="fa fa-briefcase"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Meeting</h2>
+                                <p>Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the sale.
+                                </p>
+                                <a href="#" class="btn btn-sm btn-primary"> More info</a>
+                                    <span class="vertical-date">
+                                        Today <br>
+                                        <small>Dec 24</small>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon blue-bg">
+                                <i class="fa fa-file-text"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Send documents to Mike</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
+                                <a href="#" class="btn btn-sm btn-success"> Download document </a>
+                                    <span class="vertical-date">
+                                        Today <br>
+                                        <small>Dec 24</small>
+                                    </span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon lazur-bg">
+                                <i class="fa fa-coffee"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Coffee Break</h2>
+                                <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
+                                <a href="#" class="btn btn-sm btn-info">Read more</a>
+                                <span class="vertical-date"> Yesterday <br><small>Dec 23</small></span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon yellow-bg">
+                                <i class="fa fa-phone"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Phone with Jeronimo</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
+                                <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
+                            </div>
+                        </div>
+
+                        <div class="vertical-timeline-block">
+                            <div class="vertical-timeline-icon navy-bg">
+                                <i class="fa fa-comments"></i>
+                            </div>
+
+                            <div class="vertical-timeline-content">
+                                <h2>Chat with Monica and Sandra</h2>
+                                <p>Web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
+                                <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-              </div>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a4.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right text-navy">5h ago</small>
-                  <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                  <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                  <div class="actions">
-                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                    <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Love</a>
-                  </div>
-                </div>
-              </div>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a5.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right">2h ago</small>
-                  <strong>Kim Smith</strong> posted message on <strong>Monica Smith</strong> site. <br>
-                  <small class="text-muted">Yesterday 5:20 pm - 12.06.2014</small>
-                  <div class="well">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-                    Over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-                  </div>
-                  <div class="pull-right">
-                    <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
-                  </div>
-                </div>
-              </div>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/profile.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right">23h ago</small>
-                  <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                  <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                </div>
-              </div>
-              <div class="feed-element">
-                <a href="#" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a7.jpg">
-                </a>
-                <div class="media-body ">
-                  <small class="pull-right">46h ago</small>
-                  <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                  <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                </div>
-              </div>
+
             </div>
 
-            <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> Show More</button>
-
-          </div>
-
         </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 @endsection
 @section('javascript')
 <!-- Peity -->
