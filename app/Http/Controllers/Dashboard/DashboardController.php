@@ -21,7 +21,8 @@ class DashboardController extends Controller
         $profile = $user->profile;
         Debugbar::info($user);
         Debugbar::info($profile->small_profile_image);
-        return view('dashboards.dashboard')->with('profile', $profile);;
+        Debugbar::info(url('images/user/profile.jpg'));
+        return view('dashboards.dashboard');
     }
 
     /**
